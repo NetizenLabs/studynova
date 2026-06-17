@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Student Tools" 
+  description="Free interactive tools to help you study smarter and manage your time."
+>
+  <div class="py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">Student Tools</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Free interactive tools to help you study smarter, manage your time, and track your progress.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <a href="/tools/gpa-calculator" class="group block p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-nova-blue/30 transition-all duration-300">
+        <div class="w-14 h-14 bg-mint/20 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+          📊
+        </div>
+        <h3 class="text-2xl font-bold text-navy mb-2">GPA Calculator</h3>
+        <p class="text-gray-500">Easily calculate your semester GPA. Plan ahead and track your academic progress.</p>
+      </a>
+
+      <a href="/tools/study-timer" class="group block p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-violet/30 transition-all duration-300">
+        <div class="w-14 h-14 bg-violet/20 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+          ⏱️
+        </div>
+        <h3 class="text-2xl font-bold text-navy mb-2">Study Timer</h3>
+        <p class="text-gray-500">Boost your focus with our Pomodoro-style study timer. Work smarter, not harder.</p>
+      </a>
+      
+      <a href="/tools/exam-countdown" class="group block p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-mint/30 transition-all duration-300">
+        <div class="w-14 h-14 bg-mint/20 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+          ⏳
+        </div>
+        <h3 class="text-2xl font-bold text-navy mb-2">Exam Countdown</h3>
+        <p class="text-gray-500">Add your upcoming exams and stay motivated by tracking the time left.</p>
+      </a>
+
+      <a href="/tools/study-tracker" class="group block p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-nova-blue/30 transition-all duration-300">
+        <div class="w-14 h-14 bg-nova-blue/20 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+          📈
+        </div>
+        <h3 class="text-2xl font-bold text-navy mb-2">Study Tracker</h3>
+        <p class="text-gray-500">Log your study hours securely in your browser and visualize your consistency.</p>
+      </a>
+
+      <a href="/tools/attendance-calculator" class="group block p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-violet/30 transition-all duration-300">
+        <div class="w-14 h-14 bg-violet/20 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+          🎓
+        </div>
+        <h3 class="text-2xl font-bold text-navy mb-2">Attendance Calculator</h3>
+        <p class="text-gray-500">Find out exactly how many classes you can skip while staying above your required threshold.</p>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

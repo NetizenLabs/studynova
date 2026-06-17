@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+const posts = Object.values(import.meta.glob('../../content/blog/*.mdx', { eager: true }));
+---
+
+<BaseLayout 
+  title="Blog" 
+  description="Articles and guides on building systems for academic success."
+>
+  <div class="py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">The StudyNova Blog</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Actionable advice on building systems for academic success.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post: any) => (
+        <a href={`/blog/${post.file.split('/').pop()?.replace('.mdx', '')}`} class="group block bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+          {post.frontmatter.image && (
+            <div class="h-48 overflow-hidden bg-gray-100">
+              <img src={post.frontmatter.image} alt={post.frontmatter.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          )}
+          <div class="p-6 flex-grow flex flex-col">
+            <div class="flex gap-2 mb-3">
+              {post.frontmatter.tags?.map((tag: string) => (
+                <span class="text-xs font-bold uppercase tracking-wider text-violet">{tag}</span>
+              ))}
+            </div>
+            <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-nova-blue transition-colors">
+              {post.frontmatter.title}
+            </h3>
+            <p class="text-gray-500 line-clamp-3 mb-4 flex-grow">
+              {post.frontmatter.description}
+            </p>
+            <div class="text-sm font-medium text-gray-400">
+              {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

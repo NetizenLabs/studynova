@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import ExamCountdown from '../../components/tools/ExamCountdown.jsx';
+---
+
+<BaseLayout 
+  title="Exam Countdown" 
+  description="Stay motivated and track the time left until your upcoming exams."
+>
+  <div class="max-w-4xl mx-auto py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">Exam Countdown</h1>
+      <p class="text-xl text-gray-600">Know exactly how much time you have left to prepare.</p>
+    </div>
+    
+    <ExamCountdown client:only="react" />
+  </div>
+</BaseLayout>

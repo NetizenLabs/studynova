@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout 
+  title={frontmatter.title} 
+  description={frontmatter.description}
+  image={frontmatter.image}
+>
+  <article class="max-w-3xl mx-auto py-8">
+    <header class="mb-8 text-center">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        {frontmatter.tags && frontmatter.tags.map((tag: string) => (
+          <span class="bg-violet/10 text-violet px-3 py-1 rounded-full text-sm font-medium">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4 leading-tight">{frontmatter.title}</h1>
+      <p class="text-xl text-gray-600 mb-6">{frontmatter.description}</p>
+      <div class="flex items-center justify-center gap-4 text-gray-500 text-sm">
+        <span class="font-medium">By {frontmatter.author || 'StudyNova Team'}</span>
+        <span>&bull;</span>
+        <time datetime={frontmatter.pubDate}>{new Date(frontmatter.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+      </div>
+    </header>
+    
+    {frontmatter.image && (
+      <img src={frontmatter.image} alt={frontmatter.title} class="w-full h-auto rounded-2xl mb-12 shadow-md object-cover max-h-[400px]" />
+    )}
+    
+    <div class="prose prose-lg prose-indigo mx-auto prose-headings:font-sora prose-a:text-nova-blue hover:prose-a:text-navy prose-img:rounded-xl">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

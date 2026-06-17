@@ -1,0 +1,41 @@
+---
+import '../../styles/global.css';
+import Header from '../ui/Header.astro';
+import Footer from '../ui/Footer.astro';
+
+const { title, description, image = '/images/og-default.jpg' } = Astro.props;
+const siteUrl = 'https://getstudynova.online';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title ? `${title} | StudyNova` : 'StudyNova | Systems for Students'}</title>
+    <meta name="description" content={description || "Transform student chaos into structured academic success using systems."} />
+    
+    <!-- Pinterest / Open Graph -->
+    <meta property="og:title" content={title || 'StudyNova'} />
+    <meta property="og:description" content={description || "Transform student chaos into structured academic success using systems."} />
+    <meta property="og:image" content={new URL(image, siteUrl)} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <Header />
+    <main class="flex-grow pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

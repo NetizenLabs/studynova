@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import StudyTracker from '../../components/tools/StudyTracker.jsx';
+---
+
+<BaseLayout 
+  title="Study Hours Tracker" 
+  description="Log your study sessions and track your progress over time."
+>
+  <div class="max-w-4xl mx-auto py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">Study Hours Tracker</h1>
+      <p class="text-xl text-gray-600">Consistency is key. Log your hours and watch your effort compound.</p>
+    </div>
+    
+    <StudyTracker client:only="react" />
+  </div>
+</BaseLayout>

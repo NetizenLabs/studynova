@@ -1,0 +1,15 @@
+---
+import BlogPost from '../../layouts/BlogPost.astro';
+export async function getStaticPaths() {
+  const posts = Object.values(import.meta.glob('../../content/blog/*.mdx', { eager: true }));
+  return posts.map((post: any) => {
+    return {
+      params: { slug: post.file.split('/').pop()?.replace('.mdx', '') },
+      props: { post },
+    };
+  });
+}
+const { post } = Astro.props;
+---
+
+<post.default />

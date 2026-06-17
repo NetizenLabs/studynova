@@ -1,0 +1,35 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/tools', label: 'Tools' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<header class="fixed w-full top-0 z-50 bg-clean-white/80 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center gap-2">
+          <!-- We would use the nova-icon.svg here -->
+          <div class="w-8 h-8 rounded-full bg-navy flex items-center justify-center text-white font-sora font-bold text-lg">
+            ✧
+          </div>
+          <span class="font-sora font-bold text-xl text-navy">StudyNova</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        {links.map(link => (
+          <a href={link.href} class="text-charcoal hover:text-nova-blue font-medium transition-colors">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <div class="flex items-center">
+        <a href="/tools" class="bg-nova-blue text-white px-4 py-2 rounded-full font-medium hover:bg-navy transition-colors">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
