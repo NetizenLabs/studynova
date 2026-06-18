@@ -1,43 +1,58 @@
-# Astro Starter Kit: Minimal
+# StudyNova 🌟
 
-```sh
-npm create astro@latest -- --template minimal
+StudyNova is an open-source study platform designed to help students optimize their learning schedules, track study sessions, and manage their educational content efficiently.
+
+## 🚀 Features
+
+- **Study Timer**: Built-in tools like the `StudyTimer` to help manage focus sessions (e.g., Pomodoro technique).
+- **Study Schedules & Content**: Organize study schedules and access educational blog content.
+- **Modern Stack**: Built with [Astro](https://astro.build/) for incredible performance and lightweight delivery.
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm, pnpm, or yarn
+
+### Installation
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/qurnahub-code/studynova.git
+cd studynova
+npm install
 ```
 
->  **Seasoned astronaut?** Delete this file. Have fun!
+### Development
 
-##  Project Structure
+To start the local development server:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The application will be available at `http://localhost:4321`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Build
 
-Any static assets, like images, can be placed in the `public/` directory.
+To build the project for production:
 
-## 🧞 Commands
+```bash
+npm run build
+```
 
-All commands are run from the root of the project, from a terminal:
+## 🤝 Contributing
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+We welcome contributions! Since this repository is public, feel free to fork the project, submit pull requests, and open issues to suggest new features or report bugs.
 
-## 👀 Want to learn more?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📄 License
+
+This project is open-source. See the LICENSE file for details.
