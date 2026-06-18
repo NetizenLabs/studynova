@@ -1,0 +1,103 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+	title: string;
+    filename: string;
+}
+
+const { title, filename } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="StudyNova Printable Planner" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+        <!-- html2pdf.js library -->
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+	</head>
+	<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10 font-['Inter']">
+		
+        <!-- Floating Header/Controls -->
+        <div class="fixed top-0 left-0 right-0 bg-white shadow-md z-50 py-4 px-6 flex justify-between items-center no-print">
+            <a href="/printables" class="text-blue-600 font-bold hover:text-blue-800 transition-colors flex items-center gap-2">
+                <span>←</span> Back to Printables
+            </a>
+            
+            <button 
+                id="download-pdf-btn"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold shadow-lg shadow-blue-600/30 hover:bg-blue-700 transition-colors flex items-center gap-2"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download PDF
+            </button>
+        </div>
+
+        <!-- Spacer for fixed header -->
+        <div class="h-16 no-print"></div>
+
+        <!-- The actual printable A4 Paper area -->
+        <!-- We use an ID here to target it with html2pdf -->
+        <div id="printable-area" class="bg-white shadow-2xl relative" style="width: 210mm; min-height: 297mm; padding: 20mm; box-sizing: border-box;">
+            <slot />
+        </div>
+
+        <style is:global>
+            /* Hide the controls when actually printing via Ctrl+P */
+            @media print {
+                .no-print {
+                    display: none !important;
+                }
+                body {
+                    background-color: white;
+                    padding: 0;
+                }
+                #printable-area {
+                    box-shadow: none;
+                    width: auto !important;
+                    height: auto !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+            }
+        </style>
+
+        <script define:vars={{ filename }}>
+            document.addEventListener('astro:page-load', () => {
+                const btn = document.getElementById('download-pdf-btn');
+                const element = document.getElementById('printable-area');
+
+                if (btn && element) {
+                    btn.addEventListener('click', () => {
+                        // Change button text while processing
+                        const originalText = btn.innerHTML;
+                        btn.innerHTML = 'Generating...';
+                        btn.disabled = true;
+
+                        const opt = {
+                            margin:       0,
+                            filename:     filename,
+                            image:        { type: 'jpeg', quality: 1 },
+                            html2canvas:  { scale: 2, useCORS: true },
+                            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                        };
+
+                        // Generate PDF
+                        html2pdf().set(opt).from(element).save().then(() => {
+                            // Restore button
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        });
+                    });
+                }
+            });
+        </script>
+	</body>
+</html>

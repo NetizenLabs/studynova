@@ -1,0 +1,93 @@
+---
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const times = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM'];
+---
+
+<PrintableLayout title="Weekly Study Planner" filename="studynova-weekly-planner.pdf">
+    
+    <!-- Header Area -->
+    <div class="mb-8 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Weekly Study Planner</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">TIME BLOCKING & HABIT TRACKING SYSTEM</p>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-gray-600 uppercase tracking-widest">Week Of:</span>
+                <div class="border-b border-gray-400 w-32"></div>
+            </div>
+            <div class="text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- Top Section: Goals & Priorities -->
+    <div class="flex gap-4 mb-6">
+        <div class="w-2/3 border border-gray-300 rounded-lg p-4">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3">Top Priorities This Week</h2>
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-2"><div class="w-3 h-3 border border-gray-400 rounded-sm"></div><div class="border-b border-dotted border-gray-300 flex-grow h-4"></div></div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 border border-gray-400 rounded-sm"></div><div class="border-b border-dotted border-gray-300 flex-grow h-4"></div></div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 border border-gray-400 rounded-sm"></div><div class="border-b border-dotted border-gray-300 flex-grow h-4"></div></div>
+            </div>
+        </div>
+        <div class="w-1/3 border border-gray-300 rounded-lg p-4">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3">Habit Tracker</h2>
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <div class="border-b border-dotted border-gray-300 w-16 h-4"></div>
+                    <div class="flex gap-1">
+                        {Array(7).fill(0).map(() => <div class="w-3 h-3 border border-gray-300 rounded-full"></div>)}
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="border-b border-dotted border-gray-300 w-16 h-4"></div>
+                    <div class="flex gap-1">
+                        {Array(7).fill(0).map(() => <div class="w-3 h-3 border border-gray-300 rounded-full"></div>)}
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="border-b border-dotted border-gray-300 w-16 h-4"></div>
+                    <div class="flex gap-1">
+                        {Array(7).fill(0).map(() => <div class="w-3 h-3 border border-gray-300 rounded-full"></div>)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="border-2 border-gray-800 rounded-lg overflow-hidden">
+        <!-- Grid Header -->
+        <div class="flex bg-gray-100 border-b-2 border-gray-800">
+            <div class="w-12 border-r border-gray-300 flex-shrink-0"></div>
+            {days.map(day => (
+                <div class="flex-1 border-r border-gray-300 last:border-r-0 py-2 text-center">
+                    <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">{day}</span>
+                </div>
+            ))}
+        </div>
+
+        <!-- Grid Body -->
+        <div class="flex flex-col">
+            {times.map((time, idx) => (
+                <div class={`flex ${idx !== times.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                    <!-- Time Column -->
+                    <div class="w-12 border-r border-gray-300 flex-shrink-0 py-2 text-center bg-gray-50 flex items-center justify-center">
+                        <span class="text-[8px] font-bold text-gray-500">{time}</span>
+                    </div>
+                    
+                    <!-- Days Columns -->
+                    {days.map(() => (
+                        <div class="flex-1 border-r border-dotted border-gray-300 last:border-r-0 relative">
+                            <!-- Half-hour dotted line -->
+                            <div class="absolute top-1/2 left-0 right-0 border-t border-dotted border-gray-200"></div>
+                        </div>
+                    ))}
+                </div>
+            ))}
+        </div>
+    </div>
+
+</PrintableLayout>

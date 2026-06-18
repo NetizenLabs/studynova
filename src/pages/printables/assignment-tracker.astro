@@ -1,0 +1,93 @@
+---
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+---
+
+<PrintableLayout title="Assignment Tracker" filename="studynova-assignment-tracker.pdf">
+    
+    <!-- Header Area -->
+    <div class="mb-8 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Assignment Tracker</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">MASTER DEADLINE & PROGRESS SYSTEM</p>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-gray-600 uppercase tracking-widest">Semester:</span>
+                <div class="border-b border-gray-400 w-32"></div>
+            </div>
+            <div class="text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- Main Table -->
+    <div class="border-2 border-gray-800 rounded-lg overflow-hidden">
+        
+        <!-- Table Header -->
+        <div class="flex bg-gray-100 border-b-2 border-gray-800">
+            <div class="w-10 border-r border-gray-300 py-3 text-center flex items-center justify-center">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">#</span>
+            </div>
+            <div class="w-1/4 border-r border-gray-300 py-3 px-3">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Course / Subject</span>
+            </div>
+            <div class="flex-grow border-r border-gray-300 py-3 px-3">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Assignment Details</span>
+            </div>
+            <div class="w-24 border-r border-gray-300 py-3 text-center">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Due Date</span>
+            </div>
+            <div class="w-16 border-r border-gray-300 py-3 text-center flex items-center justify-center">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Weight</span>
+            </div>
+            <div class="w-24 py-3 text-center">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Done</span>
+            </div>
+        </div>
+
+        <!-- Table Rows -->
+        <div class="flex flex-col">
+            {Array(22).fill(0).map((_, idx) => (
+                <div class={`flex ${idx !== 21 ? 'border-b border-gray-200' : ''}`}>
+                    <!-- Number -->
+                    <div class="w-10 border-r border-gray-300 py-3 text-center flex items-center justify-center bg-gray-50">
+                        <span class="text-[10px] font-bold text-gray-400">{idx + 1}</span>
+                    </div>
+                    
+                    <!-- Course -->
+                    <div class="w-1/4 border-r border-gray-300 py-3 px-3">
+                    </div>
+
+                    <!-- Details -->
+                    <div class="flex-grow border-r border-gray-300 py-3 px-3 relative">
+                        <div class="absolute bottom-2 left-3 right-3 border-b border-dotted border-gray-300"></div>
+                    </div>
+
+                    <!-- Due Date -->
+                    <div class="w-24 border-r border-gray-300 py-3 relative">
+                    </div>
+
+                    <!-- Weight -->
+                    <div class="w-16 border-r border-gray-300 py-3 relative flex items-center justify-center">
+                        <span class="text-gray-300 text-xs">%</span>
+                    </div>
+
+                    <!-- Done Checkboxes -->
+                    <div class="w-24 py-3 flex items-center justify-center gap-1">
+                        <!-- Progress circle -->
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-300"></div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Footer Notes -->
+    <div class="mt-6 border border-gray-300 rounded-lg p-4">
+        <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3">Notes & Reminders</h2>
+        <div class="flex flex-col gap-3">
+            <div class="border-b border-dotted border-gray-300 w-full h-4"></div>
+            <div class="border-b border-dotted border-gray-300 w-full h-4"></div>
+        </div>
+    </div>
+
+</PrintableLayout>
