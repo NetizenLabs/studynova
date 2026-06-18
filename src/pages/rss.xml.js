@@ -24,6 +24,7 @@ export async function GET(context) {
         title: post.frontmatter.title,
         pubDate: new Date(post.frontmatter.pubDate),
         description: post.frontmatter.description,
+        customData: `<enclosure url="${context.site}${post.frontmatter.image}" length="0" type="image/png" />`,
         // Compute RSS link from post `slug`
         link: `/blog/${slug}/`,
       };
