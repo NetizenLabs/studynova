@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GpaCalculator from '../../components/tools/GpaCalculator.jsx';
+---
+
+<Layout 
+  title="GPA Calculator" 
+  description="Calculate your semester GPA easily with StudyNova's free GPA Calculator."
+>
+  <div class="max-w-4xl mx-auto py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">GPA Calculator</h1>
+      <p class="text-xl text-gray-600">Track your academic progress and aim higher.</p>
+    </div>
+    
+    <GpaCalculator client:only="react" />
+  </div>
+</Layout>

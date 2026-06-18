@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import BlogPost from '../../layouts/BlogPost.astro';
 export async function getStaticPaths() {
   const posts = Object.values(import.meta.glob('../../content/blog/*.mdx', { eager: true }));
