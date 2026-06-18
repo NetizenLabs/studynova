@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../../layouts/Layout.astro';
 const postImports = import.meta.glob('../../content/blog/*.{md,mdx}', { eager: true });
 const allPosts = Object.values(postImports);
