@@ -1,0 +1,33 @@
+---
+import Navbar from '../components/Navbar.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "StudyNova - The Ultimate Student Productivity System" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col antialiased">
+		<Navbar />
+		<main class="flex-grow">
+			<slot />
+		</main>
+		<footer class="bg-[#0a2351] text-white py-12 mt-20">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center opacity-80 text-sm">
+				<p>&copy; {new Date().getFullYear()} StudyNova. Built for students who want more free time.</p>
+			</div>
+		</footer>
+	</body>
+</html>
