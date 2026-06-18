@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import ExamCountdown from '../../components/tools/ExamCountdown.jsx';
 ---
 
-<BaseLayout 
+<Layout 
   title="Exam Countdown" 
   description="Stay motivated and track the time left until your upcoming exams."
 >
@@ -15,4 +15,4 @@ import ExamCountdown from '../../components/tools/ExamCountdown.jsx';
     
     <ExamCountdown client:only="react" />
   </div>
-</BaseLayout>
+</Layout>

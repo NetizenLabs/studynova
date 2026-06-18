@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import StudyTimer from '../../components/tools/StudyTimer.jsx';
 ---
 
-<BaseLayout 
+<Layout 
   title="Study Timer" 
   description="Boost your focus with StudyNova's Pomodoro-style study timer."
 >
@@ -15,4 +15,4 @@ import StudyTimer from '../../components/tools/StudyTimer.jsx';
     
     <StudyTimer client:only="react" />
   </div>
-</BaseLayout>
+</Layout>

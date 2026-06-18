@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import GpaCalculator from '../../components/tools/GpaCalculator.jsx';
 ---
 
-<BaseLayout 
+<Layout 
   title="GPA Calculator" 
   description="Calculate your semester GPA easily with StudyNova's free GPA Calculator."
 >
@@ -15,4 +15,4 @@ import GpaCalculator from '../../components/tools/GpaCalculator.jsx';
     
     <GpaCalculator client:only="react" />
   </div>
-</BaseLayout>
+</Layout>

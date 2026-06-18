@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import StudyTracker from '../../components/tools/StudyTracker.jsx';
 ---
 
-<BaseLayout 
+<Layout 
   title="Study Hours Tracker" 
   description="Log your study sessions and track your progress over time."
 >
@@ -15,4 +15,4 @@ import StudyTracker from '../../components/tools/StudyTracker.jsx';
     
     <StudyTracker client:only="react" />
   </div>
-</BaseLayout>
+</Layout>
