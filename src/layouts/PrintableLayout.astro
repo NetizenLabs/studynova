@@ -69,7 +69,7 @@ const { title, filename } = Astro.props;
         </style>
 
         <script define:vars={{ filename }}>
-            document.addEventListener('astro:page-load', () => {
+            (function() {
                 const btn = document.getElementById('download-pdf-btn');
                 const element = document.getElementById('printable-area');
 
@@ -96,7 +96,7 @@ const { title, filename } = Astro.props;
                         });
                     });
                 }
-            });
+            })();
         </script>
 	</body>
 </html>
