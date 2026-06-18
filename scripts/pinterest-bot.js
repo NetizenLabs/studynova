@@ -5,11 +5,36 @@ const DB_PATH = path.join(process.cwd(), 'scripts', 'pins-data.json');
 const PINS_DIR = path.join(process.cwd(), 'pins');
 
 // Environment Variables required for GitHub Actions
-const ACCESS_TOKEN = process.env.PINTEREST_ACCESS_TOKEN;
+const APP_ID = process.env.PINTEREST_APP_ID;
+const APP_SECRET = process.env.PINTEREST_APP_SECRET;
+const REFRESH_TOKEN = process.env.PINTEREST_REFRESH_TOKEN;
 const BOARD_ID = process.env.PINTEREST_BOARD_ID;
 const PINS_PER_DAY = parseInt(process.env.PINS_PER_DAY || '3', 10);
 
-async function uploadPin(pinData) {
+async function getAccessToken() {
+  const authHeader = 'Basic ' + Buffer.from(`${APP_ID}:${APP_SECRET}`).toString('base64');
+  const params = new URLSearchParams();
+  params.append('grant_type', 'refresh_token');
+  params.append('refresh_token', REFRESH_TOKEN);
+
+  const response = await fetch('https://api.pinterest.com/v5/oauth/token', {
+    method: 'POST',
+    headers: {
+      'Authorization': authHeader,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: params.toString()
+  });
+
+  const data = await response.json();
+  if (data.access_token) {
+    return data.access_token;
+  } else {
+    throw new Error('Failed to refresh access token: ' + JSON.stringify(data));
+  }
+}
+
+async function uploadPin(pinData, accessToken) {
   const filePath = path.join(PINS_DIR, pinData.filename);
   
   if (!fs.existsSync(filePath)) {
@@ -38,7 +63,7 @@ async function uploadPin(pinData) {
     const response = await fetch('https://api.pinterest.com/v5/pins', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
@@ -63,8 +88,19 @@ async function uploadPin(pinData) {
 async function runBot() {
   console.log('--- Starting Pinterest Auto-Poster Bot ---');
 
-  if (!ACCESS_TOKEN || !BOARD_ID) {
-    console.error('CRITICAL ERROR: Missing PINTEREST_ACCESS_TOKEN or PINTEREST_BOARD_ID environment variables.');
+  if (!APP_ID || !APP_SECRET || !REFRESH_TOKEN || !BOARD_ID) {
+    console.error('CRITICAL ERROR: Missing PINTEREST_APP_ID, PINTEREST_APP_SECRET, PINTEREST_REFRESH_TOKEN, or PINTEREST_BOARD_ID environment variables.');
+    process.exit(1);
+  }
+
+  let accessToken;
+  try {
+    console.log('Negotiating fresh Access Token...');
+    accessToken = await getAccessToken();
+    console.log('Successfully acquired fresh Access Token!');
+  } catch (err) {
+    console.error('CRITICAL ERROR: Could not get access token. Is your refresh token valid?');
+    console.error(err);
     process.exit(1);
   }
 
@@ -92,7 +128,7 @@ async function runBot() {
   for (const pin of pinsToPost) {
     console.log(`\nUploading: ${pin.title} (${pin.filename})`);
     
-    const success = await uploadPin(pin);
+    const success = await uploadPin(pin, accessToken);
     
     if (success) {
       // Update database object in memory
