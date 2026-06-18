@@ -1,8 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-const allPosts = await Astro.glob('../../content/blog/*.{md,mdx}');
+const postImports = import.meta.glob('../../content/blog/*.{md,mdx}', { eager: true });
+const allPosts = Object.values(postImports);
 // Sort by date descending
-const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter?.pubDate || 0).valueOf() - new Date(a.frontmatter?.pubDate || 0).valueOf());
 ---
 
 <Layout title="StudyNova Blog - Science-Backed Study Strategies">
