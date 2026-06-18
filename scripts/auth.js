@@ -15,7 +15,7 @@ console.log("=== Pinterest Long-Lived Token Generator ===\n");
 rl.question('1. Enter your Pinterest APP ID: ', (appId) => {
   rl.question('2. Enter your Pinterest APP SECRET: ', (appSecret) => {
     
-    const authUrl = `https://www.pinterest.com/oauth/?client_id=${appId}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=boards:read,pins:read,pins:write`;
+    const authUrl = `https://www.pinterest.com/oauth/?client_id=${appId}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=boards:read,boards:write,pins:read,pins:write`;
     
     console.log(`\n\n[ACTION REQUIRED] Click this link to authorize your app:`);
     console.log(authUrl);
