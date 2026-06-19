@@ -19,12 +19,22 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
     <title>{title ? `${title} | StudyNova` : 'StudyNova | Systems for Students'}</title>
     <meta name="description" content={description || "Transform student chaos into structured academic success using systems."} />
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
     <!-- Pinterest / Open Graph -->
     <meta property="og:title" content={title || 'StudyNova'} />
     <meta property="og:description" content={description || "Transform student chaos into structured academic success using systems."} />
     <meta property="og:image" content={new URL(image, siteUrl)} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title || 'StudyNova'} />
+    <meta property="twitter:description" content={description || "Transform student chaos into structured academic success using systems."} />
+    <meta property="twitter:image" content={new URL(image, siteUrl)} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

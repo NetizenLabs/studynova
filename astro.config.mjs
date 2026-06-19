@@ -7,12 +7,14 @@ import vercel from '@astrojs/vercel';
 
 import mdx from '@astrojs/mdx';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://getstudynova.online',
   output: 'static',
   adapter: vercel(),
-  integrations: [react(), mdx()],
+  integrations: [react(), mdx(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()]
