@@ -4,7 +4,9 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   // Use import.meta.glob to dynamically import all blog posts
   const postImports = import.meta.glob('../content/blog/*.{md,mdx}', { eager: true });
-  const posts = Object.values(postImports);
+  const posts = Object.values(postImports).filter((post) => {
+    return new Date(post.frontmatter?.pubDate || 0) <= new Date();
+  });
 
   return rss({
     // `<title>` field in output xml

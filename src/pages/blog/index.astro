@@ -3,7 +3,9 @@ export const prerender = true;
 
 import Layout from '../../layouts/Layout.astro';
 const postImports = import.meta.glob('../../content/blog/*.{md,mdx}', { eager: true });
-const allPosts = Object.values(postImports);
+const allPosts = Object.values(postImports).filter((post) => {
+  return new Date(post.frontmatter?.pubDate || 0) <= new Date();
+});
 // Sort by date descending
 const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter?.pubDate || 0).valueOf() - new Date(a.frontmatter?.pubDate || 0).valueOf());
 ---
