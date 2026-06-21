@@ -2,6 +2,13 @@
 	"version": 3,
 	"routes": [
 		{
+			"src": "^/(.*)/$",
+			"headers": {
+				"Location": "/$1"
+			},
+			"status": 308
+		},
+		{
 			"handle": "filesystem"
 		},
 		{
@@ -12,15 +19,15 @@
 			"continue": true
 		},
 		{
-			"src": "^/_server-islands/([^/]+?)/?$",
+			"src": "^/_server-islands/([^/]+?)$",
 			"dest": "_render"
 		},
 		{
-			"src": "^/_image/?$",
+			"src": "^/_image$",
 			"dest": "_render"
 		},
 		{
-			"src": "^/api/subscribe/?$",
+			"src": "^/api/subscribe$",
 			"dest": "_render"
 		},
 		{

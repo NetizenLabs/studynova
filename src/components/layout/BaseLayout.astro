@@ -5,7 +5,9 @@ import Footer from '../ui/Footer.astro';
 
 const { title, description, image = '/images/og-default.jpg' } = Astro.props;
 const siteUrl = 'https://getstudynova.online';
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+let pathname = Astro.url.pathname;
+if (pathname.endsWith('/') && pathname.length > 1) pathname = pathname.slice(0, -1);
+const canonicalUrl = new URL(pathname, siteUrl);
 ---
 
 <!DOCTYPE html>

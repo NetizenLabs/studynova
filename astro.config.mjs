@@ -14,6 +14,10 @@ export default defineConfig({
   site: 'https://getstudynova.online',
   output: 'static',
   adapter: vercel(),
+  trailingSlash: 'never',
+  build: {
+    format: 'file'
+  },
   integrations: [react(), mdx(), sitemap()],
 
   vite: {

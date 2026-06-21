@@ -9,6 +9,10 @@ interface Props {
 }
 
 const { title, description = "StudyNova - The Ultimate Student Productivity System" } = Astro.props;
+
+let pathname = Astro.url.pathname;
+if (pathname.endsWith('/') && pathname.length > 1) pathname = pathname.slice(0, -1);
+const canonicalUrl = new URL(pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -21,18 +25,18 @@ const { title, description = "StudyNova - The Ultimate Student Productivity Syst
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Canonical URL -->
-		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+		<link rel="canonical" href={canonicalUrl} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={new URL('/images/og-default.jpg', Astro.site)} />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:url" content={canonicalUrl} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL('/images/og-default.jpg', Astro.site)} />
