@@ -1,0 +1,31 @@
+---
+export const prerender = true;
+
+import Layout from '../../layouts/Layout.astro';
+import FinalGradeCalculator from '../../components/tools/FinalGradeCalculator.jsx';
+---
+
+<Layout 
+  title="Final Grade Calculator" 
+  description="Calculate exactly what score you need on your final exam to pass your class or get an A with this free, interactive calculator."
+>
+  <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">Final Grade Calculator</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Find out exactly what score you need on your final exam to hit your target grade. No math required.</p>
+    </div>
+    
+    <FinalGradeCalculator client:only="react" />
+
+    <div class="mt-16 prose prose-blue max-w-none">
+      <h2 class="text-2xl font-bold text-navy mb-4">How does the Final Grade Calculator work?</h2>
+      <p class="text-gray-600 mb-4">
+        Our final grade calculator uses a standard weighted average formula to determine exactly what percentage you need on your final test to reach your desired overall class grade.
+      </p>
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <h3 class="font-bold text-gray-900 mb-2">The Formula:</h3>
+        <code class="text-blue-600 bg-blue-50 px-3 py-1 rounded-md text-sm">Required Score = (Desired Grade - Current Grade × (1 - Final Weight)) / Final Weight</code>
+      </div>
+    </div>
+  </div>
+</Layout>

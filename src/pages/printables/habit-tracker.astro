@@ -1,0 +1,84 @@
+---
+import '../../styles/global.css';
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+
+const days = Array.from({length: 31}, (_, i) => i + 1);
+---
+
+<PrintableLayout title="30-Day Habit Tracker" filename="studynova-habit-tracker.pdf">
+    
+    <!-- Header Area -->
+    <div class="mb-8 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Monthly Habit Tracker</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">BUILD CONSISTENCY & CRUSH YOUR GOALS</p>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-gray-600 uppercase tracking-widest">Month:</span>
+                <div class="border-b border-gray-400 w-32 h-4"></div>
+            </div>
+            <div class="text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="border-2 border-gray-800 rounded-lg overflow-hidden">
+        
+        <!-- Grid Header -->
+        <div class="flex bg-gray-100 border-b-2 border-gray-800">
+            <div class="w-48 border-r border-gray-300 flex-shrink-0 px-4 py-3 flex items-center">
+                <span class="text-xs font-bold text-gray-800 uppercase tracking-widest">Habit / Goal</span>
+            </div>
+            <div class="flex-1 grid grid-cols-[repeat(31,minmax(0,1fr))]">
+                {days.map(day => (
+                    <div class="border-r border-gray-300 last:border-r-0 py-3 flex items-center justify-center bg-gray-50">
+                        <span class="text-[10px] font-bold text-gray-800">{day}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <!-- Grid Body (Rows) -->
+        <div class="flex flex-col">
+            {Array(15).fill(0).map((_, idx) => (
+                <div class={`flex ${idx !== 14 ? 'border-b border-gray-300' : ''}`}>
+                    <!-- Habit Name Column -->
+                    <div class="w-48 border-r border-gray-300 flex-shrink-0 px-4 py-3 flex items-center">
+                        <div class="w-full border-b border-dotted border-gray-400 h-4 mt-2"></div>
+                    </div>
+                    
+                    <!-- Days Columns (Checkboxes) -->
+                    <div class="flex-1 grid grid-cols-[repeat(31,minmax(0,1fr))]">
+                        {days.map(() => (
+                            <div class="border-r border-gray-200 last:border-r-0 py-2 flex items-center justify-center">
+                                <div class="w-4 h-4 rounded-sm border border-gray-300 bg-white shadow-sm"></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Bottom Section: Rewards & Notes -->
+    <div class="mt-8 flex gap-6">
+        <div class="w-1/2 border-2 border-gray-800 rounded-lg p-4">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Milestones & Rewards</h2>
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-2"><span class="text-xs text-gray-500 font-bold">10 Days:</span><div class="border-b border-dotted border-gray-400 flex-grow h-4"></div></div>
+                <div class="flex items-center gap-2"><span class="text-xs text-gray-500 font-bold">20 Days:</span><div class="border-b border-dotted border-gray-400 flex-grow h-4"></div></div>
+                <div class="flex items-center gap-2"><span class="text-xs text-gray-500 font-bold">30 Days:</span><div class="border-b border-dotted border-gray-400 flex-grow h-4"></div></div>
+            </div>
+        </div>
+        <div class="w-1/2 border-2 border-gray-800 rounded-lg p-4">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Reflections / Notes</h2>
+            <div class="flex flex-col gap-5">
+                <div class="border-b border-gray-300 w-full h-1"></div>
+                <div class="border-b border-gray-300 w-full h-1"></div>
+                <div class="border-b border-gray-300 w-full h-1"></div>
+            </div>
+        </div>
+    </div>
+
+</PrintableLayout>

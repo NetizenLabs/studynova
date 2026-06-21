@@ -1,0 +1,35 @@
+---
+export const prerender = true;
+
+import Layout from '../../layouts/Layout.astro';
+import WordCounter from '../../components/tools/WordCounter.jsx';
+---
+
+<Layout 
+  title="Free Essay Word Counter & Reading Time Estimator" 
+  description="Instantly count words, characters, sentences, and estimate presentation reading times with our free browser-based word counter."
+>
+  <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-navy mb-4">Word Counter</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Paste your essay or speech below to instantly check your word limits and estimate speaking times.</p>
+    </div>
+    
+    <WordCounter client:only="react" />
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="prose prose-blue">
+        <h2 class="text-2xl font-bold text-navy mb-4">Why use this word counter?</h2>
+        <p class="text-gray-600">
+          Whether you are trying to hit a 1,000-word essay minimum or trim down an overly long personal statement, keeping track of your exact character counts is crucial for students. Our tool runs completely locally in your browser, meaning your essay is never uploaded to any servers.
+        </p>
+      </div>
+      <div class="prose prose-blue">
+        <h2 class="text-2xl font-bold text-navy mb-4">Speaking Time Estimation</h2>
+        <p class="text-gray-600">
+          If you are writing a speech or presentation, the word count alone isn't enough. We calculate the estimated speaking time based on the average conversational speaking rate of <strong>130 words per minute</strong>, helping you ensure your presentation fits exactly within the time limit.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
