@@ -1,0 +1,79 @@
+---
+import '../../styles/global.css';
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+---
+
+<PrintableLayout title="Project Breakdown Matrix" filename="studynova-project-breakdown.pdf">
+    
+    <!-- Header Area -->
+    <div class="mb-4 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Project Matrix</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">BREAK DOWN MASSIVE TASKS INTO BITE-SIZED STEPS</p>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-gray-600 uppercase tracking-widest">Project:</span>
+                <div class="border-b border-gray-400 w-32"></div>
+            </div>
+            <div class="text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="flex gap-4 mb-6">
+        <div class="w-1/2 flex items-center gap-4">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest">Deadline:</h2>
+            <div class="border-b border-dotted border-gray-400 flex-grow"></div>
+        </div>
+        <div class="w-1/2 flex items-center gap-4">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest">Final Goal / Grade:</h2>
+            <div class="border-b border-dotted border-gray-400 flex-grow"></div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="border-2 border-gray-800 rounded-lg overflow-hidden">
+        <!-- Grid Header -->
+        <div class="flex bg-gray-100 border-b-2 border-gray-800">
+            <div class="w-16 border-r border-gray-300 flex-shrink-0 text-center py-2">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Done</span>
+            </div>
+            <div class="flex-grow border-r border-gray-300 py-2 px-4">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Actionable Sub-Task</span>
+            </div>
+            <div class="w-24 border-r border-gray-300 py-2 text-center">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Micro-Deadline</span>
+            </div>
+            <div class="w-32 py-2 text-center">
+                <span class="text-[10px] font-bold text-gray-800 uppercase tracking-widest">Est. Time</span>
+            </div>
+        </div>
+
+        <!-- Grid Body -->
+        <div class="flex flex-col">
+            {Array(13).fill(0).map((_, idx) => (
+                <div class={`flex ${idx !== 12 ? 'border-b border-gray-200' : ''}`}>
+                    <div class="w-16 border-r border-gray-300 flex-shrink-0 py-3 flex justify-center items-center">
+                        <div class="w-4 h-4 border-2 border-gray-400 rounded-sm"></div>
+                    </div>
+                    <div class="flex-grow border-r border-dotted border-gray-300 py-3 px-4"></div>
+                    <div class="w-24 border-r border-dotted border-gray-300 py-3"></div>
+                    <div class="w-32 py-3 bg-gray-50"></div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Brain dump section -->
+    <div class="mt-6 border-2 border-gray-800 rounded-lg p-4 h-32 relative">
+        <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest absolute top-0 -mt-2 bg-white px-2 left-4">Brain Dump & Resources</h2>
+        <div class="flex flex-col gap-4 mt-2">
+            <div class="border-b border-dotted border-gray-300 w-full"></div>
+            <div class="border-b border-dotted border-gray-300 w-full"></div>
+            <div class="border-b border-dotted border-gray-300 w-full"></div>
+            <div class="border-b border-dotted border-gray-300 w-full"></div>
+        </div>
+    </div>
+
+</PrintableLayout>

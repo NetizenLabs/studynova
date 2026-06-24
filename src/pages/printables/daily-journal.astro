@@ -1,0 +1,89 @@
+---
+import '../../styles/global.css';
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+---
+
+<PrintableLayout title="Daily Study Journal" filename="studynova-daily-journal.pdf">
+    
+    <!-- Header Area -->
+    <div class="mb-8 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Daily Journal</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">SET INTENTIONS & PRIORITIZE YOUR DAY</p>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-gray-600 uppercase tracking-widest">Date:</span>
+                <div class="border-b border-gray-400 w-32"></div>
+            </div>
+            <div class="text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- Morning Section -->
+    <div class="mb-8">
+        <h2 class="text-lg font-black text-gray-800 uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span class="text-xl">☀️</span> Morning Setup
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Gratitude -->
+            <div class="border-2 border-gray-800 rounded-lg p-4 relative h-32">
+                <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-widest absolute top-0 -mt-2 bg-white px-2 left-4">I am grateful for...</h3>
+                <div class="flex flex-col gap-4 mt-4">
+                    <div class="border-b border-dotted border-gray-300 w-full"></div>
+                    <div class="border-b border-dotted border-gray-300 w-full"></div>
+                    <div class="border-b border-dotted border-gray-300 w-full"></div>
+                </div>
+            </div>
+            
+            <!-- Most Important Task -->
+            <div class="border-2 border-gray-800 rounded-lg p-4 relative h-32 bg-blue-50">
+                <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-widest absolute top-0 -mt-2 bg-blue-50 px-2 left-4">The One Thing (MIT)</h3>
+                <p class="text-[10px] text-gray-500 mt-1 italic">If I accomplish nothing else today, I must complete:</p>
+                <div class="flex flex-col gap-4 mt-2">
+                    <div class="border-b border-dotted border-gray-400 w-full"></div>
+                    <div class="border-b border-dotted border-gray-400 w-full"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Today's Schedule -->
+    <div class="mb-8">
+        <h2 class="text-lg font-black text-gray-800 uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span class="text-xl">📋</span> Today's Tasks
+        </h2>
+        
+        <div class="border-2 border-gray-800 rounded-lg overflow-hidden">
+            {Array(8).fill(0).map((_, idx) => (
+                <div class={`flex items-center ${idx !== 7 ? 'border-b border-gray-200' : ''}`}>
+                    <div class="w-12 border-r border-gray-300 py-3 flex justify-center items-center bg-gray-50">
+                        <div class="w-4 h-4 border-2 border-gray-400 rounded-full"></div>
+                    </div>
+                    <div class="flex-grow py-3 px-4 border-r border-dotted border-gray-300"></div>
+                    <div class="w-24 py-3 bg-gray-50 flex items-center justify-center">
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">Time</span>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Evening Review -->
+    <div>
+        <h2 class="text-lg font-black text-gray-800 uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span class="text-xl">🌙</span> Evening Review
+        </h2>
+        
+        <div class="border-2 border-gray-800 rounded-lg p-4 relative h-32">
+            <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-widest absolute top-0 -mt-2 bg-white px-2 left-4">What went well today? How can I improve tomorrow?</h3>
+            <div class="flex flex-col gap-5 mt-4">
+                <div class="border-b border-dotted border-gray-300 w-full"></div>
+                <div class="border-b border-dotted border-gray-300 w-full"></div>
+                <div class="border-b border-dotted border-gray-300 w-full"></div>
+            </div>
+        </div>
+    </div>
+
+</PrintableLayout>

@@ -8,7 +8,7 @@ const days = Array.from({length: 31}, (_, i) => i + 1);
 <PrintableLayout title="30-Day Habit Tracker" filename="studynova-habit-tracker.pdf">
     
     <!-- Header Area -->
-    <div class="mb-8 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+    <div class="mb-4 border-b-2 border-gray-800 pb-2 flex justify-between items-end">
         <div>
             <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Monthly Habit Tracker</h1>
             <p class="text-gray-500 text-sm font-medium mt-1">BUILD CONSISTENCY & CRUSH YOUR GOALS</p>
@@ -44,7 +44,7 @@ const days = Array.from({length: 31}, (_, i) => i + 1);
             {Array(15).fill(0).map((_, idx) => (
                 <div class={`flex ${idx !== 14 ? 'border-b border-gray-300' : ''}`}>
                     <!-- Habit Name Column -->
-                    <div class="w-48 border-r border-gray-300 flex-shrink-0 px-4 py-3 flex items-center">
+                    <div class="w-48 border-r border-gray-300 flex-shrink-0 px-4 py-2 flex items-center">
                         <div class="w-full border-b border-dotted border-gray-400 h-4 mt-2"></div>
                     </div>
                     
@@ -62,7 +62,7 @@ const days = Array.from({length: 31}, (_, i) => i + 1);
     </div>
 
     <!-- Bottom Section: Rewards & Notes -->
-    <div class="mt-8 flex gap-6">
+    <div class="mt-4 flex gap-6" style="page-break-inside: avoid; break-inside: avoid;">
         <div class="w-1/2 border-2 border-gray-800 rounded-lg p-4">
             <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Milestones & Rewards</h2>
             <div class="flex flex-col gap-4">
