@@ -8,6 +8,9 @@ StudyNova is an open-source study platform designed to help students optimize th
 - **Study Schedules & Content**: Organize study schedules and access educational blog content.
 - **Modern Stack**: Built with [Astro](https://astro.build/) for incredible performance and lightweight delivery.
 
+## 🛠️ V2.0 Architecture Compliance
+> **HQ Agent V2.0 Compliant:** This repository is managed by the Netizen Labs HQ Agent and strictly adheres to the Ultimate Master Blueprint. It utilizes Architectural Asymmetry (Anti-Template Protocol), autonomous Daily Publisher bots, AIO Schema Blueprinting, and Emil Design Eng micro-interactions.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
