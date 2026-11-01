@@ -1,0 +1,55 @@
+---
+interface Props {
+  heading?: string;
+  subtext?: string;
+}
+const { heading = "Get the Free Weekly Study Planner", subtext = "The exact one-page planner from the StudyNova system. Drop your email and we'll send the PDF instantly." } = Astro.props;
+---
+
+<section class="my-16 rounded-3xl bg-gradient-to-br from-[#0a2351] via-blue-950 to-blue-800 px-8 py-12 md:px-12 text-center shadow-2xl shadow-blue-900/30 relative overflow-hidden">
+  <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-blue-500/20 blur-3xl"></div>
+  <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-[#2EE6A6]/10 blur-3xl"></div>
+  <div class="relative z-10 max-w-2xl mx-auto">
+    <span class="inline-block px-3 py-1 bg-white/10 text-[#2EE6A6] text-xs font-bold uppercase tracking-widest rounded-full mb-5">Free Printable</span>
+    <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-4" style="color:#ffffff">{heading}</h2>
+    <p class="text-lg text-blue-100/90 mb-8 leading-relaxed">{subtext}</p>
+    <form id="planner-capture-form" class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+      <input type="email" id="planner-capture-email" name="email" required placeholder="Enter your student email..."
+        class="flex-1 px-6 py-4 rounded-full bg-white/95 text-gray-900 text-base focus:outline-none focus:ring-4 focus:ring-[#2EE6A6]/40 placeholder:text-gray-400" />
+      <button type="submit" id="planner-capture-btn" class="px-8 py-4 bg-[#2EE6A6] text-[#0a2351] font-black rounded-full text-base hover:bg-[#5ff0bc] transition-colors whitespace-nowrap shadow-lg shadow-emerald-500/20">
+        Send it to me
+      </button>
+    </form>
+    <p id="planner-capture-msg" class="mt-4 text-base font-semibold hidden"></p>
+    <p class="mt-5 text-sm text-blue-200/70">One useful email a week. No spam, unsubscribe anytime.</p>
+  </div>
+</section>
+
+<script>
+  const pform = document.getElementById('planner-capture-form');
+  if (pform) {
+    const msg = document.getElementById('planner-capture-msg');
+    const btn = document.getElementById('planner-capture-btn');
+    pform.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (document.getElementById('planner-capture-email') as HTMLInputElement).value;
+      (btn as HTMLButtonElement).textContent = 'Sending...';
+      (btn as HTMLButtonElement).disabled = true;
+      try {
+        const res = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Something went wrong');
+        pform.style.display = 'none';
+        msg.textContent = 'Awesome! Check your inbox for the planner.';
+        msg.className = 'mt-4 text-base font-semibold text-[#2EE6A6]';
+        msg.style.display = 'block';
+      } catch (err) {
+        msg.textContent = 'Oops! ' + (err as Error).message;
+        msg.className = 'mt-4 text-base font-semibold text-red-300';
+        msg.style.display = 'block';
+        (btn as HTMLButtonElement).textContent = 'Send it to me';
+        (btn as HTMLButtonElement).disabled = false;
+      }
+    });
+  }
+</script>

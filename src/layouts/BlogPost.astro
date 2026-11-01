@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import RelatedResources from '../components/RelatedResources.astro';
+import EmailCapture from '../components/EmailCapture.astro';
 
 const { frontmatter } = Astro.props;
 ---
@@ -35,6 +36,8 @@ const { frontmatter } = Astro.props;
     <div class="prose prose-lg prose-indigo mx-auto prose-headings:font-sora prose-a:text-nova-blue hover:prose-a:text-navy prose-img:rounded-xl">
       <slot />
     </div>
+
+    <EmailCapture />
 
     <RelatedResources />
   </article>
