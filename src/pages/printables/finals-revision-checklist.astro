@@ -1,0 +1,107 @@
+---
+import '../../styles/global.css';
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+
+const subjects = ['Subject 1', 'Subject 2', 'Subject 3'];
+const stages = ['Topic list complete', 'Active-recall pass', 'Past paper done', 'Error log reviewed'];
+const topicRows = [1, 2, 3, 4, 5];
+const finalsDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+---
+
+<PrintableLayout title="Finals Revision Checklist" filename="studynova-finals-revision-checklist.pdf">
+
+    <!-- Header Area -->
+    <div class="mb-3 border-b-2 border-gray-800 pb-3 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Finals Revision Checklist</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">EVERY TOPIC &bull; EVERY PASS &bull; NOTHING LEFT TO GUESSWORK</p>
+        </div>
+        <div class="flex flex-col gap-2 w-60">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-gray-600 uppercase tracking-widest">Finals week:</span>
+                <div class="border-b border-gray-400 flex-grow h-4"></div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-gray-600 uppercase tracking-widest">Semester:</span>
+                <div class="border-b border-gray-400 flex-grow h-4"></div>
+            </div>
+            <div class="text-right text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- How to use -->
+    <div class="mb-3 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2">
+        <p class="text-xs text-gray-600 leading-relaxed"><span class="font-bold text-gray-800 uppercase tracking-wider">How to use:</span> Use one block for each subject; print a second copy if you have more than three finals. Break the syllabus into testable topics, then move each topic through the same sequence: recall it without notes, meet it in a past paper, and review the errors it produced. A topic is not finished when you have read it &mdash; it is finished when all three evidence boxes are ticked.</p>
+    </div>
+
+    <!-- Subject checklist blocks -->
+    <div class="flex flex-col gap-3">
+        {subjects.map((subject) => (
+            <section class="border-2 border-gray-800 rounded-lg overflow-hidden">
+                <div class="flex items-center gap-3 bg-gray-100 border-b border-gray-300 px-3 py-2">
+                    <span class="text-xs font-black text-gray-800 uppercase tracking-widest whitespace-nowrap">{subject}:</span>
+                    <div class="border-b border-gray-400 flex-grow h-4"></div>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">Exam date:</span>
+                    <div class="border-b border-gray-400 w-20 h-4"></div>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">Target:</span>
+                    <div class="border-b border-gray-400 w-12 h-4"></div>
+                </div>
+
+                <div class="flex flex-wrap gap-x-4 gap-y-1 px-3 py-2 border-b border-gray-200">
+                    {stages.map((stage) => (
+                        <span class="flex items-center gap-1 text-[9px] font-bold text-gray-600 uppercase tracking-wider">
+                            <span class="inline-block w-3 h-3 border border-gray-500 rounded-sm"></span>{stage}
+                        </span>
+                    ))}
+                </div>
+
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-300">
+                            <th class="text-left py-1 px-3 text-[9px] font-bold text-gray-700 uppercase tracking-widest">Topic to Revise</th>
+                            <th class="text-center py-1 px-1 text-[9px] font-bold text-gray-700 uppercase tracking-widest w-16">Recall &#10003;</th>
+                            <th class="text-center py-1 px-1 text-[9px] font-bold text-gray-700 uppercase tracking-widest w-20">Past Paper &#10003;</th>
+                            <th class="text-center py-1 px-1 text-[9px] font-bold text-gray-700 uppercase tracking-widest w-20">Error Log &#10003;</th>
+                            <th class="text-center py-1 px-1 text-[9px] font-bold text-gray-700 uppercase tracking-widest w-24">Confidence / Next Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {topicRows.map((row) => (
+                            <tr class="border-b border-gray-100 last:border-b-0">
+                                <td class="py-[3px] px-3"><span class="text-[9px] font-bold text-gray-300 mr-2">{row}</span><span class="inline-block border-b border-dotted border-gray-300 w-[85%] h-3 align-middle"></span></td>
+                                <td class="py-[3px] px-1 text-center"><span class="inline-block w-3.5 h-3.5 border border-gray-400 rounded-sm align-middle"></span></td>
+                                <td class="py-[3px] px-1 text-center"><span class="inline-block w-3.5 h-3.5 border border-gray-400 rounded-sm align-middle"></span></td>
+                                <td class="py-[3px] px-1 text-center"><span class="inline-block w-3.5 h-3.5 border border-gray-400 rounded-sm align-middle"></span></td>
+                                <td class="py-[3px] px-2"><div class="border-b border-dotted border-gray-300 h-3"></div></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </section>
+        ))}
+    </div>
+
+    <!-- Finals-week day planner strip -->
+    <div class="mt-3 border-2 border-gray-800 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-3 py-2 flex justify-between items-center">
+            <h2 class="text-xs font-black text-white uppercase tracking-widest">Finals-Week Day Planner</h2>
+            <span class="text-[9px] font-bold text-gray-300 uppercase tracking-widest">One main focus &bull; one repair &bull; protected sleep</span>
+        </div>
+        <div class="grid grid-cols-7">
+            {finalsDays.map((day, index) => (
+                <div class={`${index !== finalsDays.length - 1 ? 'border-r border-gray-300' : ''} px-2 py-2`}>
+                    <p class="text-center text-[10px] font-black text-gray-800 uppercase tracking-widest border-b border-gray-200 pb-1 mb-2">{day}</p>
+                    <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Exam / Focus</p>
+                    <div class="border-b border-dotted border-gray-300 h-4 mb-2"></div>
+                    <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Repair</p>
+                    <div class="border-b border-dotted border-gray-300 h-4 mb-2"></div>
+                    <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Lights out</p>
+                    <div class="border-b border-dotted border-gray-300 h-4"></div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <p class="mt-2 text-center text-[10px] text-gray-500"><span class="font-bold text-gray-700 uppercase tracking-wider">Rule:</span> If a topic fails twice, shrink it, find the missing prerequisite, and schedule the repair before adding anything new.</p>
+
+</PrintableLayout>
