@@ -1,0 +1,82 @@
+---
+import '../../styles/global.css';
+import PrintableLayout from '../../layouts/PrintableLayout.astro';
+
+const weeks = Array.from({ length: 16 }, (_, i) => i + 1);
+---
+
+<PrintableLayout title="Semester at a Glance" filename="studynova-semester-at-a-glance.pdf">
+
+    <!-- Header Area -->
+    <div class="mb-4 border-b-2 border-gray-800 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="font-['Outfit'] text-4xl font-black text-gray-900 tracking-tight uppercase">Semester at a Glance</h1>
+            <p class="text-gray-500 text-sm font-medium mt-1">EVERY EXAM &amp; DEADLINE — ONE PAGE</p>
+        </div>
+        <div class="flex flex-col items-end gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-gray-600 uppercase tracking-widest">Semester:</span>
+                <div class="border-b border-gray-400 w-32"></div>
+            </div>
+            <div class="text-xs text-gray-400 font-bold uppercase tracking-wider">getstudynova.online</div>
+        </div>
+    </div>
+
+    <!-- How to use -->
+    <div class="mb-4 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
+        <p class="text-xs text-gray-600 leading-relaxed"><span class="font-bold text-gray-800 uppercase tracking-wider">How to use:</span> Go through every syllabus in week 1 and write each exam, quiz week and project deadline into its week below. Circle the weeks with two or more big items — those are your crunch weeks. Start preparing for a crunch week at least 10 days early.</p>
+    </div>
+
+    <!-- Week grid -->
+    <table class="w-full border-collapse text-sm">
+        <thead>
+            <tr class="border-b-2 border-gray-800">
+                <th class="text-left py-2 pr-2 text-xs font-bold text-gray-800 uppercase tracking-widest w-16">Week</th>
+                <th class="text-left py-2 pr-2 text-xs font-bold text-gray-800 uppercase tracking-widest w-24">Dates</th>
+                <th class="text-left py-2 pr-2 text-xs font-bold text-gray-800 uppercase tracking-widest">Exams &amp; Quizzes</th>
+                <th class="text-left py-2 pr-2 text-xs font-bold text-gray-800 uppercase tracking-widest">Projects &amp; Papers Due</th>
+                <th class="text-left py-2 text-xs font-bold text-gray-800 uppercase tracking-widest w-32">Crunch? ★</th>
+            </tr>
+        </thead>
+        <tbody>
+            {weeks.map((w) => (
+                <tr class="border-b border-dotted border-gray-300">
+                    <td class="py-2 pr-2 font-bold text-gray-700">{w}</td>
+                    <td class="py-2 pr-2"><div class="border-b border-dotted border-gray-200 h-4"></div></td>
+                    <td class="py-2 pr-2"><div class="border-b border-dotted border-gray-200 h-4"></div></td>
+                    <td class="py-2 pr-2"><div class="border-b border-dotted border-gray-200 h-4"></div></td>
+                    <td class="py-2 text-center text-gray-300 text-base">☆</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+
+    <!-- Key dates strip -->
+    <div class="mt-4 grid grid-cols-3 gap-4">
+        <div class="border border-gray-300 rounded-lg p-3">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-2">Midterms</h2>
+            <div class="flex flex-col gap-2">
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+            </div>
+        </div>
+        <div class="border border-gray-300 rounded-lg p-3">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-2">Finals Week</h2>
+            <div class="flex flex-col gap-2">
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+            </div>
+        </div>
+        <div class="border border-gray-300 rounded-lg p-3">
+            <h2 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-2">Breaks / Days Off</h2>
+            <div class="flex flex-col gap-2">
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+                <div class="border-b border-dotted border-gray-300 h-4"></div>
+            </div>
+        </div>
+    </div>
+
+</PrintableLayout>
